@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test fruits App
+{% endblock %}
+
+{% block body %}
+	{% include 'fruit/include/navbar.html.twig' %}
+	<div class="container">
+		<div class="row card m-2">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<h5 class="card-header d-flex">
+					<font style="vertical-align: inherit;" class="pull-left">
+						<font style="vertical-align: inherit;text-align:center; m-2">All Favorited Fruits</font>
+					</font>
+					<font style="vertical-align: inherit;" class="pull-right ml-5">
+						{{ form_start(filterForm, {'attr': {'class':'d-flex'}}) }}
+						{{ form_row(filterForm.name) }}
+						{{ form_row(filterForm.family) }}
+						<button type="submit" class="btn btn-primary m-2">Filter</button>
+
+
+						{{ form_end(filterForm) }}
+					</font>
+				</h5>
+				<table class="table table-bordered table-hover table-responsive table-striped m-2 card-body">
+					<thead class="thead-dark">
+						<tr>
+							<th>Name</th>
+							<th>Family</th>
+							<th>Order</th>
+							<th>Genus</th>
+							<th>Total of facts Nutrition</th>
+                            <th>Favorite</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for fruit in fruitsFavoris %}
+							<tr>
+								<td>{{ fruit.name }}</td>
+								<td>{{ fruit.family }}</td>
+								<td>{{ fruit.ord }}</td>
+								<td>{{ fruit.genus }}</td>
+								<th>
+								 	 <ul>
+										<li>Calories: {{ sumCalories }}</li>
+										<li>Fat: {{ sumFat }} </li>
+										<li>Carbs: {{ sumCarbs }} </li>
+										<li>Sugar : {{ sumSugar }} </li>
+										<li>Protein: {{ sumProtein }} </li>
+									</ul>
+								</th>
+								 {% if fruit.isFavorite %}
+                                   <td> Favorite </td>
+                                {% endif %}  
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="4">No fruits found.</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<div class="pagination-nav d-flex justify-content-center mx-auto">
+					<ul
+						class="pagination">
+						{# {% dump(knp_pagination_render(fruits)) %} #}
+						<li>{{ knp_pagination_render(fruitsFavoris) }}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
