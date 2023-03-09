@@ -18,7 +18,7 @@ This is a Symfony project that performs the following tasks:
 
 ## Installation
 1. Clone the repository
-  `git clone https://gitlab.com/salif.ka7865/testfruitsapp.git`
+  `git clone'
 2. Install dependencies
    `composer install`
 3. Configure the database in the .env file and Mailer DSN
